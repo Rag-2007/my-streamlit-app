@@ -2,6 +2,7 @@ import streamlit as st
 from datetime import date
 import psycopg2
 import pandas as pd
+import socket
 
 if 'is_logged_in' not in st.session_state:
     st.session_state['is_logged_in'] = False
@@ -15,9 +16,13 @@ form_data = {
 }
 
 def get_connection():
+    try:
+        host_ipv4 = socket.gethostbyname("db.lpbkacurlvaqqowqfxhq.supabase.co")
+    except:
+        host_ipv4 = "db.lpbkacurlvaqqowqfxhq.supabase.co" 
     return psycopg2.connect(
-    host="db.lpbkacurlvaqqowqfxhq.supabase.co",
-    port=5432,
+    host=host_ipv4,
+    port = 5432 ,
     dbname="postgres",
     user="postgres",
     password="Database@2007#",
