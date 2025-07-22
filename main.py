@@ -16,11 +16,12 @@ form_data = {
 
 def get_connection():
     return psycopg2.connect(
-        dbname="postgres",
-        user="postgres",
-        password="Database@2007#",
-        host="db.lpbkacurlvaqqowqfxhq.supabase.co",
-        port="5432"
+        host=st.secrets["postgres"]["host"],
+        port=st.secrets["postgres"]["port"],
+        dbname=st.secrets["postgres"]["dbname"],
+        user=st.secrets["postgres"]["user"],
+        password=st.secrets["postgres"]["password"],
+        sslmode="require"
     )
 
 
